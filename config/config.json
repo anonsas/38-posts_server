@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "JavaScript1337",
-    "database": "full_stack",
+    "password": "",
+    "database": "posts_app",
     "host": "localhost",
     "dialect": "mysql"
   },
