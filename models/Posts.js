@@ -1,3 +1,5 @@
+// Creating a model, for our Table (Posts) in (posts_app) database.
+
 module.exports = (sequelize, DataTypes) => {
   const Posts = sequelize.define('Posts', {
     title: {
@@ -14,5 +16,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Posts.associate = (models) => {
+    Posts.hasMany(models.Comments, {
+      onDelete: 'cascade',
+    });
+  };
+
+  // If we would delete a POST, it would delete
+  // every comment related to that POST.
   return Posts;
 };

@@ -8,9 +8,15 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const post = req.body;
-  await Posts.create(post);
-  res.json(post);
+  const newPost = req.body;
+  await Posts.create(newPost);
+  res.json(newPost);
+});
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const postById = await Posts.findByPk(id);
+  res.json(postById);
 });
 
 module.exports = router;
