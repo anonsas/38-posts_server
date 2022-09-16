@@ -19,6 +19,7 @@ router.post('/', async (req, res) => {
 // First we need to check if the User is already exists?!
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
 
   const user = await Users.findOne({
     where: {
@@ -26,13 +27,17 @@ router.post('/login', async (req, res) => {
     },
   });
 
-  if (!user) res.json({ error: "User doesn't exist" });
-
-  bcrypt.compare(password, user.password).then((matched) => {
-    if (!matched) res.json({ error: 'Wrong Password' });
-
-    res.json('YOU LOGGED IN');
-  });
+  if (!user) {
+    res.json({ error: "User doesn't exist" });
+  } else {
+    bcrypt.compare(password, user.password).then((matched) => {
+      if (!matched) {
+        res.json({ error: 'Wrong Password' });
+      } else {
+        res.json('YOU LOGGED IN');
+      }
+    });
+  }
 });
 
 module.exports = router;
