@@ -8,6 +8,9 @@ router.get('/:postId', async (req, res) => {
   res.json(comments);
 });
 
+// Go to the Comments table and return every single element
+// where PostId column is the same as (postId) from the req.params
+
 router.post('/', async (req, res) => {
   const newComment = req.body;
   await Comments.create(newComment);
@@ -15,6 +18,3 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
-
-// Go to the Comments table and return every single element
-// where PostId column is the same as (postId) from the req.params

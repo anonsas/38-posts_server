@@ -24,5 +24,6 @@ module.exports = (sequelize, DataTypes) => {
 
   // If we would delete a POST, it would delete
   // every comment related to that POST.
+
   return Posts;
 };
