@@ -15,3 +15,11 @@ which hashes to random Strings and Letters. And there is no way back.
 All we can do is: we can hash a password again and compare it to
 the hashed value to see if they were the same passwords.
 ----------------------------------------------------------
+
+jsonwebtoken - 
+{sign} - creates a token. Use it on the /login, to the right person.
+{verify} - 
+
+Our ACCESS_TOKEN should always be in the cookies!!! httpOnly
+Because user can access: LocalStorage || SessionStorage
+cookie-parser
