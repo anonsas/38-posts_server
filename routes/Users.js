@@ -3,6 +3,7 @@ const router = express.Router();
 const { Users } = require('../models');
 const bcrypt = require('bcrypt');
 const { sign } = require('jsonwebtoken');
+const { validateToken } = require('../middlewares/AuthMiddleware');
 require('dotenv').config();
 
 router.post('/', async (req, res) => {
@@ -37,14 +38,18 @@ router.post('/login', async (req, res) => {
         res.json({ error: 'Wrong Password' });
       } else {
         const accessToken = sign(
-          { username: user.username, id: user.id },
+          { id: user.id, username: user.username },
           process.env.JWT_ACCESS_TOKEN
         );
 
-        res.json(accessToken);
+        res.json({ accessToken: accessToken, id: user.id, username: user.username });
       }
     });
   }
+});
+
+router.get('/auth', validateToken, (req, res) => {
+  res.json(req.user);
 });
 
 module.exports = router;

@@ -6,6 +6,7 @@ const validateToken = (req, res, next) => {
 
   try {
     const validToken = verify(accessToken, process.env.JWT_ACCESS_TOKEN);
+    req.user = validToken;
 
     if (validToken) {
       return next();

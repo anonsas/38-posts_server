@@ -16,10 +16,22 @@ All we can do is: we can hash a password again and compare it to
 the hashed value to see if they were the same passwords.
 ----------------------------------------------------------
 
-jsonwebtoken - 
-{sign} - creates a token. Use it on the /login, to the right person.
-{verify} - 
+jsonwebtoken - Information Exchange as a JSON object: good way of securely 
+transmitting information between parties because they can be signed, which means you 
+can be sure that the senders are who they say they are. Additionally, the 
+structure of a JWT allows you to verify that the content hasn't been tampered with.
 
+JWTs are signed with a key when they are generated and then validated with a key 
+upon receipt so we can verify that they haven't been modified in transit.
+
+JWT Structure: [Header Segment][Payload Segment][Crypto Segment].
+
+{sign} - Creates a token. Use it on the /login, to the right person.
+
+{verify} - The receiver of the JWT will verify the signature to ensure 
+that the token hasn't been altered after it was signed by the issuer.
+
+----------------------------------------------------------
 Our ACCESS_TOKEN should always be in the cookies!!! httpOnly
 Because user can access: LocalStorage || SessionStorage
 cookie-parser
