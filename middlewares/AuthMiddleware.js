@@ -6,6 +6,7 @@ const validateToken = (req, res, next) => {
 
   try {
     const validToken = verify(accessToken, process.env.JWT_ACCESS_TOKEN);
+    console.log(validToken);
     req.user = validToken;
 
     if (validToken) {
@@ -17,3 +18,9 @@ const validateToken = (req, res, next) => {
 };
 
 module.exports = { validateToken };
+
+// If user is not authenticated, we get: Object with ERROR.
+// If user is authenticated, we get: Object with USER.
+// req.user.id
+// req.user.username
+// req.user.password
