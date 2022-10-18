@@ -9,16 +9,24 @@ router.get('/', validateToken, async (req, res) => {
   res.json({ postList: allPosts, likedPostList: likedPosts });
 });
 
-router.post('/', async (req, res) => {
-  const newPost = req.body;
-  await Posts.create(newPost);
-  res.json(newPost);
-});
-
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
   const postById = await Posts.findByPk(id);
   res.json(postById);
 });
+
+router.post('/', validateToken, async (req, res) => {
+  const newPost = req.body;
+  newPost.username = req.user.username;
+  await Posts.create(newPost);
+  res.json(newPost);
+});
+
+// router.post('/', validateToken, async (req, res) => {
+//   const newPost = req.body;
+//   newPost.username = req.user.username;
+//   await Posts.create(newPost);
+//   res.json(newPost);
+// });
 
 module.exports = router;

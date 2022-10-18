@@ -21,6 +21,7 @@ module.exports = { validateToken };
 
 // If user is not authenticated, we get: Object with ERROR.
 // If user is authenticated, we get: Object with USER.
+
+// req.user.iat
 // req.user.id
 // req.user.username
-// req.user.password
