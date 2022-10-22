@@ -52,4 +52,14 @@ router.get('/auth', validateToken, (req, res) => {
   res.json(req.user);
 });
 
+router.get('/userinfo/:id', async (req, res) => {
+  const id = req.params.id;
+
+  const userProfile = await Users.findByPk(id, {
+    attributes: { exclude: ['password'] },
+  });
+
+  res.json(userProfile);
+});
+
 module.exports = router;
