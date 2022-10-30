@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  // If we would delete a POST, it would delete
+  // every Comments And Likes related to that POST.
+  // onDelete: 'cascade'.
   Posts.associate = (models) => {
     Posts.hasMany(models.Comments, {
       onDelete: 'cascade',
@@ -25,9 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'cascade',
     });
   };
-
-  // If we would delete a POST, it would delete
-  // every comment related to that POST.
 
   return Posts;
 };

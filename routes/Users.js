@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
     Users.create({
       username: username,
       password: hash,
+      role: 'user',
     });
   });
 
@@ -22,7 +23,6 @@ router.post('/', async (req, res) => {
 // First we need to check if the User is already exists?!
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
 
   const user = await Users.findOne({
     where: {
@@ -42,7 +42,12 @@ router.post('/login', async (req, res) => {
           process.env.JWT_ACCESS_TOKEN
         );
 
-        res.json({ accessToken: accessToken, id: user.id, username: user.username });
+        res.json({
+          accessToken: accessToken,
+          id: user.id,
+          username: user.username,
+          role: user.role,
+        });
       }
     });
   }

@@ -25,3 +25,4 @@ module.exports = { validateToken };
 // req.user.iat
 // req.user.id
 // req.user.username
+// req.user.role
