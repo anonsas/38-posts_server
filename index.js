@@ -21,6 +21,9 @@ app.use('/comments', commentsRouter);
 const likesRouter = require('./routes/Likes');
 app.use('/likes', likesRouter);
 
+const adminRouter = require('./routes/Admin');
+app.use('/admin', adminRouter);
+
 // Database with Server ----------------------
 db.sequelize.sync().then(() => {
   app.listen(process.env.PORT, () => {
